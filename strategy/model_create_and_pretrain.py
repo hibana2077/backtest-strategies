@@ -74,7 +74,7 @@ reg = setup(data = data, target = 'target', session_id = 123,normalize=True,
 print("Setup finished")
 
 #compare models
-best2 = compare_models(sort = 'MAPE', n_select = 2, exclude=['lightgbm'])
+best2 = compare_models(sort = 'R2', n_select = 4, exclude=['lightgbm'])
 print(best2)
 print("Models compared")
 

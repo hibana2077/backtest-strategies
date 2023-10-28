@@ -70,11 +70,11 @@ print(data.shape)
 
 #setup
 reg = setup(data = data, target = 'target', session_id = 123,normalize=True,
-            ignore_features = ['is_local_max', 'time'])
+            ignore_features = ['is_local_max', 'time'],html=False)
 print("Setup finished")
 
 #compare models
-best2 = compare_models(sort = 'R2', n_select = 4, exclude=['lightgbm'])
+best2 = compare_models(sort = 'MAE', n_select = 4, exclude=['lightgbm'])
 print(best2)
 print("Models compared")
 

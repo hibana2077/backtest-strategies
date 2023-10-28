@@ -1,0 +1,1 @@
+pip3 install pandas_ta ccxt pandas numpy scipy pycaret[full]

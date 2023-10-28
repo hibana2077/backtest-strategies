@@ -3,3 +3,4 @@
 /strategy/mlruns/
 *.pkl
 *.log
+*.out

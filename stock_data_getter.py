@@ -2,11 +2,13 @@
 Author: hibana2077 hibana2077@gmail.com
 Date: 2024-02-22 10:02:54
 LastEditors: hibana2077 hibana2077@gmail.com
-LastEditTime: 2024-02-22 10:11:22
+LastEditTime: 2024-02-22 10:40:09
 FilePath: \backtest-strategies-1\stock_data_getter.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
-# Purpose: get data from ccxt and save it to csv file
+# Purpose: get data from yfinance and save it to csv file
+import warnings
+warnings.filterwarnings('ignore', category=FutureWarning)
 import pandas as pd
 import argparse
 import logging
@@ -21,8 +23,8 @@ logger = logging.getLogger('data_getter')
 # input : symbol, timeframe, start_time, end_time
 
 parser = argparse.ArgumentParser(description='data getter')
-parser.add_argument('--symbol', type=str, default='AAPL')
-parser.add_argument('--period', type=str, default='1y')
+parser.add_argument('--symbol', type=str, default='TSLA')
+parser.add_argument('--period', type=str, default='10y')
 
 args = parser.parse_args()
 
@@ -33,6 +35,11 @@ def get_data(symbol:str, period:str) -> pd.DataFrame:
     symbol = symbol
     ticker = yf.Ticker(symbol)
     data = ticker.history(period=period)
+    col_map = {'Open':'open', 'High':'high', 'Low':'low', 'Close':'close', 'Volume':'volume'}
+    data.rename(columns=col_map, inplace=True)
+    data.index.name = 'time'
+    # make time set to UTC
+    data.index = data.index.tz_convert('UTC')
     return data
 
 #set up data saver

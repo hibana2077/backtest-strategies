@@ -18,10 +18,10 @@ logger = logging.getLogger('data_getter')
 # input : symbol, timeframe, start_time, end_time
 
 parser = argparse.ArgumentParser(description='data getter')
-parser.add_argument('--symbol', type=str, default='BTC/USDT')
+parser.add_argument('--symbol', type=str, default='WLD/USDT')
 parser.add_argument('--timeframe', type=str, default='4h')
-parser.add_argument('--start_time', type=str, default='2020-01-01 00:00:00')
-parser.add_argument('--end_time', type=str, default='2023-01-01 00:00:00')
+parser.add_argument('--start_time', type=str, default='2023-07-24 00:00:00')
+parser.add_argument('--end_time', type=str, default='2024-02-20 00:00:00')
 
 args = parser.parse_args()
 
